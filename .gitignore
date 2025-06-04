@@ -1,0 +1,9 @@
+# Ignore build output and VS-specific files
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+appsettings.Development.json

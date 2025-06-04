@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LifestyleSurveyApp</title>
+
+    <!-- Core CSS references -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LifestyleSurveyApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+
+    <style>
+        /* Ensures page height stretches full screen */
+        html, body {
+            height: 100%;
+        }
+
+        /* Flex layout to push footer to bottom */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main content expands as needed */
+        main {
+            flex: 1;
+        }
+
+        /* Slight hover effect on buttons */
+        .btn:hover {
+            transition: 0.3s ease;
+            opacity: 0.9;
+        }
+
+        /* Enhanced focus styling for form elements */
+        input:focus, select:focus {
+            box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+            border-color: #86b7fe;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Responsive navbar with links -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <div class="container">
+                <a class="navbar-brand" href="/">_Surveys</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Survey" asp-action="Index">Fill Out Survey</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Survey" asp-action="Results">View Survey Results</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content area -->
+    <div class="container flex-grow-1 d-flex flex-column">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer with contact and attribution -->
+    <footer class="bg-light text-center text-muted py-3 mt-auto border-top" style="font-size: 0.9rem;">
+        &copy; @DateTime.Now.Year – <strong>_Surveys</strong> |
+        Developed by <strong>Andrew Mukavela</strong> |
+        <a href="mailto:amukavela@gmail.com" class="text-muted text-decoration-none">amukavela@gmail.com</a>
+    </footer>
+
+    <!-- JS library references -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Enables Bootstrap 5 form validation feedback
+        (() => {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', e => {
+                    if (!form.checkValidity()) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
